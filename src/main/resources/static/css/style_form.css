@@ -1,0 +1,33 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+body{
+    background-image: url("../img/logo_2.png");
+}
+
+h1{
+    color: black;
+}
+
+h3{
+    color:black;
+}
+
+
+form{
+    background-color: transparent;
+    margin: 100px auto;
+    width: 700px;
+}
+
+img#imagen{
+    margin: 100px auto;
+    height: 150px;
+    width: 150px;    
+}
+
+label{
+    color:black;
+}

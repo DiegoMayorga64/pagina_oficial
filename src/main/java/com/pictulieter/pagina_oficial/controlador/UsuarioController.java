@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UsuarioController {
@@ -40,9 +41,15 @@ public class UsuarioController {
     }
 
     @GetMapping("/registrarUsuario")
-    public String agregarUsuario(Model model){
+    public String mostrarForm(Model model){
         model.addAttribute("nuevoUsuario", new Usuario());
         return "agregarUsuario";
+    }
+
+    @PostMapping("/registrarUsuario")
+    public String agregarUsuario(@ModelAttribute Usuario u){
+        uDao.save(u);
+        return "";
     }
 
 

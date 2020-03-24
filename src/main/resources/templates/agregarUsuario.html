@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registro Usuario PictuLieter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="..\static\css\style_form.css">
 </head>
 <body>
-
+            <form action="" th:action="@{/registrarUsuario}" method="post" th:object=${agregarUsuario}>
+                <h1 align="center">Registro de usuario Pictulieter</h1>
+                <h3 align="center">Por favor, rellene el formulario.</h3>
+                <div class="form-group">
+                  <label for="ingresaNombre">Nombre Completo</label>
+                  <input type="text" class="form-control" id="ingresaNombre" placeholder="...." th:field="*{nombre}">
+                </div>
+                <div class="form-group">
+                    <label for="ingresaApodo">Apodo o Sobrenombre</label>
+                    <input type="text" class="form-control" id="ingresaApodo" placeholder="...." th:field="*{apodo}">
+                </div>
+                <div class="form-group">
+                    <label for="ingresaCorreo">Correo</label>
+                    <input type="email" class="form-control" id="ingresaCorreo" th:field="*{correo}">
+                </div>
+                <div class="form-group">
+                    <label for="ingresaContraseña">Contraseña</label>
+                    <input type="password" class="form-control" id="ingresaContraseña" th:field="*{contraseña}">
+                </div>
+                <button type="submit" class="btn btn-primary" >Registrarse</button>
+              </form>
+        </div>
 </body>
 </html>
+
+
