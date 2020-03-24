@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="..\static\css\style_form.css">
+</head>
+<body>
+
+    <div th:if="${error==true}">
+        <div class="alert alert-danger" role="alert">
+            Correo o Contraseña incorrectos, Inténtelo de nuevo.
+        </div>
+    </div>
+    
+    <form th:action="/login" method="post" th:object="${usuario}">
+        <div class="form-group">
+          <label for="">Correo</label>
+          <input type="email" class="form-control" name="" id="" th:field="*{correo}">
+        </div>
+        <div class="form-group">
+          <label for="">Contraseña</label>
+          <input type="password" class="form-control" name="" id="" th:field="*{contraseña}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+</body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -31,7 +32,7 @@ public class UsuarioController {
 
         Usuario u= uDao.findById(id.intValue());
 
-        if(u.getTipo()!=1 && u.getTipo()!=0){
+        if(u.getTipo()>0){
             model.addAttribute("usuario", u);
             return "verPerfilComun";
         }else {
@@ -41,7 +42,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/registrarUsuario")
-    public String mostrarForm(Model model){
+    public String mostrarFormRegistro(Model model){
         model.addAttribute("nuevoUsuario", new Usuario());
         return "agregarUsuario";
     }
@@ -49,9 +50,28 @@ public class UsuarioController {
     @PostMapping("/registrarUsuario")
     public String agregarUsuario(@ModelAttribute Usuario u){
         uDao.save(u);
-        return "";
+        return "index";
     }
 
+    @GetMapping("/login")
+    public String mostrarFormLogin(Model model){
+        model.addAttribute("usuario",new Usuario());
+        return "loginPage";
+    }
+
+    @PostMapping("/login")
+    public String login(Model model,@ModelAttribute Usuario u, HttpServletRequest request){
+        Usuario usuarioBD= uDao.findByCorreoAndContraseña(u.getCorreo(),u.getContraseña());
+        if(usuarioBD!=null){
+            request.getSession().setAttribute("usuarioLogueado",usuarioBD);
+            return "index";
+        }else{
+            model.addAttribute("usuario",new Usuario());
+            model.addAttribute("error",true);
+            return "loginPage";
+        }
+
+    }
 
 
 }

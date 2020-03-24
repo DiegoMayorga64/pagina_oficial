@@ -15,4 +15,6 @@ public interface UsuarioDAO extends CrudRepository <Usuario, Integer> {
 //    public Optional<Usuario> findById(Integer id);
 
     public Usuario findById(int id);
+
+    public Usuario findByCorreoAndContraseña(String email,String pass);
 }

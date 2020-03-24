@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Registro Usuario PictuLieter</title>
@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="..\static\css\style_form.css">
 </head>
 <body>
-            <form action="" th:action="@{/registrarUsuario}" method="post" th:object=${agregarUsuario}>
+            <form action="" th:action="@{/registrarUsuario}" method="post" th:object=${nuevoUsuario}>
                 <h1 align="center">Registro de usuario Pictulieter</h1>
                 <h3 align="center">Por favor, rellene el formulario.</h3>
                 <div class="form-group">

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <title> PictuLieter
     </title>
@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="..\static\css\style_general.css">
+    <link rel="stylesheet" type="text/css" th:href="@{..\static\css\style_general.css}">
 </head>
 
   <body>
@@ -21,10 +21,10 @@
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active"  href="/conocenos">Conocenos</a>
-            <a class="nav-item nav-link" href="/verHistorias">Historias</a>
-            <a class="nav-item nav-link"  href="/verDibujos">Dibujos</a>
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-item nav-link active"  th:href="conocenos.html">Conocenos</a>
+            <a class="nav-item nav-link" th:href="verHistorias.html">Historias</a>
+            <a class="nav-item nav-link"  th:href="verDibujos.html">Dibujos</a>
+            <a class="nav-item nav-link disabled" :href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </div>
         </div>
       </nav>
@@ -32,14 +32,25 @@
     <div id="contenedor">
         <div id="content">
             <div id="aside">
-                <div id="card_perfil">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-                </div>
+
+                <th:block th:if="${session.usuarioLogueado==null}"></th:block>
+                  <button type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
+                  <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                </th:block>
+                
+                <th:block th:if="${session.usuarioLogueado.getTipo()==0}">
+                  <a class="text" th:text="'Hola '+${session.usuarioLogueado.getApodo()}"></a>
+                  <a class="link" th:href="@{editUsuario.html}.html">editar perfil</a>
+                  <button type="submit" class="btn btn-danger btn-block">Desconectar</button>
+                </th:block>
+                  
+                <th:block th:unless="${session.usuarioLogueado==null&&session.usuarioLogueado.getTipo()==0}">
+                  <a class="text" th:text="'Hola '+${session.usuarioLogueado.getApodo()}"></a>
+                  <a class="link" th:href="@{editUsuario.html}">editar perfil</a>
+                  <a class="link" th:href="@{agregarContenido.html}">agregar contenido</a>
+                  <button type="submit" class="btn btn-danger btn-block">Desconectar</button>
+                </th:block>
+                
                 <img id=img_u src="..\static\img\logo_ufro.png" alt="">
                 <img id="img_abajo" src="..\static\img\logo_en_largo.png" alt="">
             </div>
@@ -47,6 +58,7 @@
             </div>
         </div>
     </div>    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
