@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="..\static\css\style_form.css">
 </head>
-<body>
+<body class="col-sm-6">
+    <a class="row" >
+        <img src="img/logo_2.png" style="width: 200px; "alt="">
+    </a>
+</body>
+<body class="text-center col-sm-6">
 
     <div th:if="${error==true}">
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert" style="padding-left: 46.25rem;">
             Correo o Contraseña incorrectos, Inténtelo de nuevo.
         </div>
     </div>
-    
+
     <form th:action="@{/login}" method="post" th:object="${usuario}">
+        <div class="form-group">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"><b>Por favor Inicie Sesión</b></h1>
+        </div>
         <div class="form-group">
           <label for="">Correo</label>
           <input type="email" class="form-control" name="" id="" th:field="*{correo}">
@@ -26,4 +34,5 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
 </body>
+
 </html>
