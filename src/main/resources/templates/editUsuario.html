@@ -2,9 +2,51 @@
 <html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Editar Usuario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="..\static\css\style_form.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="..\static\img\logo_2.png" width="40" height="40" alt="">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active"  href="/conocenos">Conocenos</a>
+            <a class="nav-item nav-link" href="/verHistorias">Historias</a>
+            <a class="nav-item nav-link"  href="/verDibujos">Dibujos</a>
+            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </div>
+        </div>
+      </nav>
 
+    <div id="contenedor">
+        <div id="content">
+            <div id="aside">
+
+                <th:block th:if="${session.usuarioLogueado==null}">
+                  <a class="btn btn-primary" href="/login" role="button">Iniciar Sesion</a>
+                  <a class="btn btn-primary" href="/registrarUsuario" role="button">Registrarse</a>
+                </th:block>
+                
+                <th:block th:unless="${session.usuarioLogueado==null}">
+                  <a class="text" th:text="'Hola '+${session.usuarioLogueado.getApodo()}"></a>
+                  <a class="btn btn-primary" href="/usuarios/${session.usuarioLogueado.getId()}/perfil">Editar perfil</a>
+                  <form action="logout" method="post">
+                    <input class="link" type="submit" value="Desconectar">
+                  </form>
+                </th:block>
+                
+                <img id=img_u src="..\static\img\logo_ufro.png" alt="hola">
+                <img id="img_abajo" src="..\static\img\logo_en_largo.png" alt="">
+            </div>
+            <div id="section" class="container">
+
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

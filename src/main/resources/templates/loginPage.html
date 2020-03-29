@@ -15,7 +15,7 @@
         </div>
     </div>
     
-    <form th:action="/login" method="post" th:object="${usuario}">
+    <form th:action="@{/login}" method="post" th:object="${usuario}">
         <div class="form-group">
           <label for="">Correo</label>
           <input type="email" class="form-control" name="" id="" th:field="*{correo}">

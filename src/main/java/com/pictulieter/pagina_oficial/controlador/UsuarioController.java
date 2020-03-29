@@ -27,7 +27,7 @@ public class UsuarioController {
         return "verUsuarios";
     }
 
-    @GetMapping("/usuarios/{idUsuario}/perfil")
+    @GetMapping("/{idUsuario}/perfil")
     public String verPerfilUsuario(@PathVariable(name="idUsuario") Integer id, Model model){
 
         Usuario u= uDao.findById(id.intValue());
@@ -49,6 +49,7 @@ public class UsuarioController {
 
     @PostMapping("/registrarUsuario")
     public String agregarUsuario(@ModelAttribute Usuario u){
+        u.setTipo(0);
         uDao.save(u);
         return "index";
     }
@@ -70,8 +71,12 @@ public class UsuarioController {
             model.addAttribute("error",true);
             return "loginPage";
         }
-
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+       request.getSession().invalidate();
+       return "redirect:/";
+    }
 
 }
