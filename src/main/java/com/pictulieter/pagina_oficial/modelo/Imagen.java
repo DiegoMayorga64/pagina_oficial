@@ -16,12 +16,12 @@ public class Imagen implements Serializable {
     private String descripcion;
 
     @Basic
-    @Column(name = "ruta")
-    private String ruta;
+    @Column(name = "titulo")
+    private String titulo;
 
     @Basic
     @Column(name = "tipo")
-    private Integer tipo;
+    private int tipo;
 
     @Basic
     @Column(name="txt")
@@ -57,20 +57,20 @@ public class Imagen implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getRuta() {
-        return ruta;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
+    public void setTitulo(String ruta) {
+        this.titulo = ruta;
     }
 
 
-    public Integer getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(Integer tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
@@ -81,13 +81,13 @@ public class Imagen implements Serializable {
         Imagen imagen = (Imagen) o;
         return id == imagen.id &&
                 Objects.equals(descripcion, imagen.descripcion) &&
-                Objects.equals(ruta, imagen.ruta) &&
+                Objects.equals(titulo, imagen.titulo) &&
                 Objects.equals(tipo, imagen.tipo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descripcion, ruta, tipo);
+        return Objects.hash(id, descripcion, titulo, tipo);
     }
 
 

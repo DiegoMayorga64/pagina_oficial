@@ -9,13 +9,21 @@
 </head>
 <body>
     <form enctype="multipart/form-data" action="" th:action="@{/agregarContenido}" method="post" th:object=${nuevoContenido}>
+
+      <div class="form-group">
+        <label for="exampleInputPassword1">Titulo</label>
+        <input type="text" class="form-control" id="Titulo" th:field="*{titulo}">
+      </div>
+
         <div class="form-group">
             <label for="exampleFormControlSelect1">Seleciona Opcion</label>
             <select class="form-control" id="exampleFormControlSelect1" th:field="*{tipo}">
-              <option value="1">Escritura</option>
-              <option value="2">Dibujos</option>
-              <option value="3">FanArt</option>
-              <option value="4">Bocetos</option>
+              <option value="1">Novela</option>
+              <option value="2">Mini-historia/Sinopsis</option>
+              <option value="3">Poesia</option>
+              <option value="4">Dibujo</option>
+              <option value="5">FanArt</option>
+              <option value="6">Boceto</option>
             </select>
           </div>
 
@@ -25,10 +33,16 @@
         </div>
 
         <div class="form-group">
+          <label for="exampleFormControltext1">Historia</label>
+          <textarea class="form-control" id="text" rows="5" th:field="*{txt}"></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="exampleFormControlTextarea1">Descripcion</label>
             <textarea class="form-control" id="descripcion" rows="3" th:field="*{descripcion}"></textarea>
         </div>
 
+        <button type="submit" class="btn btn-primary" >Agregar</button>
       </form>
 
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

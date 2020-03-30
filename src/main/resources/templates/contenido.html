@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
   <head>
     <title> PictuLieter
     </title>
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style_general.css">
 
+ 
 </head>
 
   <body>
@@ -61,7 +62,19 @@
               </div>
             
             <div id="section">
-              
+                <div class="row">
+                    <p th:text="${content}.getTitulo()"></p>
+                    </div>  
+                    
+              <div class="row">
+                <img src="${content}.getImg()" class="img-fluid rounded"  alt="">
+              </div>
+
+              <div class="row">
+                <p th:text="${content}.getDescripcion()"></p>
+                </div>
+
+
             </div>
                
     </div>    

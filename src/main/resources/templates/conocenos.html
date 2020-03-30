@@ -5,22 +5,21 @@
     <title>PictuLieter/Conocenos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="..\static\css\style_general.css">
+    <link rel="stylesheet" type="text/css" href="css/style_general.css">
 </head>
 
 <body>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="..\static\img\logo_2.png" width="40" height="40" alt="">
+            <img src="img/logo_2.png" width="40" height="40" alt="">
         </a>
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active"  href="conocenos.html">Conocenos<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="verHistorias.html">Historias</a>
-            <a class="nav-item nav-link"  href="verDibujos.html">Dibujos</a> 
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-item nav-link active"  href="/Conocenos">Conocenos<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/Historias">Historias</a>
+            <a class="nav-item nav-link"  href="/Dibujos">Dibujos</a> 
           </div>
         </div>
       </nav>
@@ -42,11 +41,49 @@
                   </form>
                 </th:block>
                 
-                <img id=img_u src="..\static\img\logo_ufro.png" alt="hola">
-                <img id="img_abajo" src="..\static\img\logo_en_largo.png" alt="">
+                <div id="test">
+                    <img src="img/logo_en_largo.png" class="img-fluid rounded"  alt="">
+                  </div>                
+                  <div id="test">
+                    <img src="img/logo_ufro.png" class="img-fluid rounded" alt="" >
+                  </div>
             </div>
-            <div id="section" class="container">
-
+            <div id="section">
+                <h1 align="center">PictuLieter</h1>
+                <h3 align="center">Agrupacion estudiantil de la Universidad de la Frontera</h3>
+                <h3 align="center">Enfocado al apoyo de estudiantes relacionado a temas de escritura y dibujo,</h3>
+                <h3 align="center">y a la creacion de novelas e ilustraciones</h3>
+                <h1></h1>
+                <h1></h1>
+                <h1 align="center">Conoce a los integrantes</h1>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apodo</th>
+                        <th scope="col">Rol</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e : ${listaUsuarios}">
+                            <td scope="row" th:text="${e.getNombre()}"></td>
+                            <td scope="row" th:text="${e.getApodo()}"></td>
+                            <th:block th:if="${e.getTipo()==1}">
+                            <td scope="row">Dibujante/Escritor(@)</td>
+                            </th:block>
+                            <th:block th:unless="${e.getTipo()==1}">
+                                <th:block th:if="${e.getTipo()==2}">
+                                <td scope="row">Escritor(@)</td>
+                                </th:block>
+                                <th:block th:unless="${e.getTipo()==2}">
+                                    <th:block th:if="${e.getTipo()==3}">
+                                <td scope="row">Dibujante</td>
+                                </th:block>
+                                </th:block>
+                            </th:block>
+                        </tr>
+                    </tbody>
+                </table>    
             </div>
         </div>
       </div>

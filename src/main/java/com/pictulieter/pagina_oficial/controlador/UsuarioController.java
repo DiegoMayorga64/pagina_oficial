@@ -1,6 +1,7 @@
 package com.pictulieter.pagina_oficial.controlador;
 
 import com.pictulieter.pagina_oficial.dao.UsuarioDAO;
+import com.pictulieter.pagina_oficial.modelo.Imagen;
 import com.pictulieter.pagina_oficial.modelo.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,27 +20,27 @@ public class UsuarioController {
     @Autowired
     private UsuarioDAO uDao;
 
-    @GetMapping("/usuarios")
-    public String usuarios(Model model) {
 
-        List<Usuario> usuarios = uDao.findAll();
-        model.addAttribute("usuarioBd", usuarios);
-        return "verUsuarios";
+    @GetMapping("/Conocenos")
+    public String usuarios(Model model) {
+        List<Usuario> usuarios= uDao.findByTipo(1);
+        for (int i=0;i<uDao.findByTipo(2).size();i++){
+            usuarios.add(uDao.findByTipo(2).get(i));
+        }
+        for (int i=0;i<uDao.findByTipo(3).size();i++){
+            usuarios.add(uDao.findByTipo(3).get(i));
+        }
+        model.addAttribute("listaUsuarios", usuarios);
+        return "conocenos";
     }
 
-    @GetMapping("/{idUsuario}/perfil")
+   /* @GetMapping("/{idUsuario}/perfil")
     public String verPerfilUsuario(@PathVariable(name="idUsuario") Integer id, Model model){
 
         Usuario u= uDao.findById(id.intValue());
-
-        if(u.getTipo()>0){
-            model.addAttribute("usuario", u);
-            return "verPerfilComun";
-        }else {
-            model.addAttribute("usuario", u);
-            return "verPerfilAdmin";
-        }
-    }
+        model.addAttribute("usuario", u);
+        return "verPerfilComun";
+    }*/
 
     @GetMapping("/registrarUsuario")
     public String mostrarFormRegistro(Model model){
@@ -77,6 +78,26 @@ public class UsuarioController {
     public String logout(HttpServletRequest request) {
        request.getSession().invalidate();
        return "redirect:/";
+    }
+
+    @GetMapping("/Dibujos/Dibujantes")
+    public String mostrarDibujantes(Model model){
+        List<Usuario> dibujantes= uDao.findByTipo(3);
+        for (int i=0;i<uDao.findByTipo(1).size();i++){
+            dibujantes.add(uDao.findByTipo(1).get(i));
+        }
+        model.addAttribute("dibujantes",dibujantes);
+        return "verDibujosXTipo";
+    }
+
+    @GetMapping("/Historias/Autores")
+    public String mostrarEscritores(Model model){
+        List<Usuario> escritores= uDao.findByTipo(2);
+        for (int i=0;i<uDao.findByTipo(1).size();i++){
+            escritores.add(uDao.findByTipo(1).get(i));
+        }
+        model.addAttribute("escritores",escritores);
+        return "verHistoriasXTipo";
     }
 
 }

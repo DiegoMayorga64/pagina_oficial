@@ -1,10 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <head>
+    <title> PictuLieter
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style_general.css">
+
+ 
+</head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" >
+            <img src="img/logo_2.png" width="40" height="40" alt="">
+        </a>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active"  href="/Conocenos">Conocenos</a>
+            <a class="nav-item nav-link" href="/Historias">Historias</a>
+            <a class="nav-item nav-link"  href="/Dibujos">Dibujos</a>
+          </div>
+        </div>
+      </nav>
+
+    <div id="contenedor">
+            <div class="aside">
+
+                <th:block th:if="${session.usuarioLogueado==null}">
+                  <a class="btn btn-primary" href="/login" role="button">Iniciar Sesion</a>
+                  <a class="btn btn-primary" href="/registrarUsuario" role="button">Registrarse</a>
+                </th:block>
+                
+                <th:block th:unless="${session.usuarioLogueado==null}">
+
+                  <a class="text" th:text="'Hola '+${session.usuarioLogueado.getApodo()}"></a>
+                  <a class="btn btn-primary" href="/usuarios/${session.usuarioLogueado.getId()}/perfil">Editar perfil</a>
+
+                  <th:block th:if="${session.usuarioLogueado.getTipo()!=0}">
+                    <a class="btn btn-primary" href="/${session.usuarioLogueado.getId()}/agregarContenido">Agregar Contenido</a>
+                  </th:block>
+
+                  <form action="logout" method="post">
+                    <input class="link" type="submit" value="Desconectar">
+                  </form>
+                </th:block>
+                
+                  <div id="test">
+                    <img src="img/logo_en_largo.png" class="img-fluid rounded"  alt="">
+                  </div>                
+                  <div id="test">
+                    <img src="img/logo_ufro.png" class="img-fluid rounded" alt="" >
+                  </div>  
+
+              </div>
+            
+            <div id="section">
+              <img>
+            </div>
+               
+    </div>    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
